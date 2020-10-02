@@ -5,6 +5,6 @@ DB({
   path: path.resolve(__dirname, "./shop.db"),
   readonly: false,
   fileMustExist: true,
-  WAL: true,
+  WAL: false,
   migrate: false,
 });

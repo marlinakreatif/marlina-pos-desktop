@@ -1,29 +1,47 @@
 import React, { Component } from "react";
-import { GET_ALL_PRODUCT, GET_ALL_USER } from "../constants/ipc.constant";
-import sendAsync, {
-  handleGetAllUser,
-  handleGetAllProduct,
-} from "../ipc/rendererIPC";
+import * as IPC from "../constants/ipc.constant";
+import invokeHandler from "../ipc/rendererIPC";
 
 export default class App extends Component {
   state = {
-    users: [],
     products: [],
   };
   componentDidMount() {
-    console.log(handleGetAllUser());
-    console.log(handleGetAllProduct());
+    invokeHandler(IPC.PRODUCT.ALL).then((res) => {
+      this.setState({
+        products: res,
+      });
+    });
   }
 
+  addProductDumy = () => {
+    invokeHandler(IPC.PRODUCT.ADD, {
+      barcode: "18210938192",
+      name: "Jamu sebel puyeng",
+      price: 90000,
+      stock: 10,
+      createAt: new Date().getTime(),
+    }).catch((err) => {
+      alert(err);
+    });
+  };
+
   render() {
-    const { users } = this.state;
+    const { products } = this.state;
     return (
       <div>
-        <span>Selamat Datang Pekok Aku ingi selalu bersama kamu</span>
+        <span>Tabel Produk</span>
         <div>
-          {users.map((data, index) => {
-            return <span key={index}>{data.username}</span>;
-          })}
+          <ul>
+            {products.map((data, index) => {
+              return (
+                <li key={index}>
+                  <span>{data.name}</span>
+                </li>
+              );
+            })}
+          </ul>
+          <button onClick={this.addProductDumy}>Tambah Data</button>
         </div>
       </div>
     );
