@@ -1,49 +1,17 @@
-import React, { Component } from "react";
-import * as IPC from "../constants/ipc.constant";
-import invokeHandler from "../ipc/rendererIPC";
+import React from "react";
+import { MemoryRouter as Router, Route, Switch } from "react-router-dom";
+import { ProductAdd, ProductList } from "./product";
 
-export default class App extends Component {
-  state = {
-    products: [],
-  };
-  componentDidMount() {
-    invokeHandler(IPC.PRODUCT.ALL).then((res) => {
-      this.setState({
-        products: res,
-      });
-    });
-  }
-
-  addProductDumy = () => {
-    invokeHandler(IPC.PRODUCT.ADD, {
-      barcode: "18210938192",
-      name: "Jamu sebel puyeng",
-      price: 90000,
-      stock: 10,
-      createAt: new Date().getTime(),
-    }).catch((err) => {
-      alert(err);
-    });
-  };
-
-  render() {
-    const { products } = this.state;
-    return (
-      <div>
-        <span>Tabel Produk</span>
-        <div>
-          <ul>
-            {products.map((data, index) => {
-              return (
-                <li key={index}>
-                  <span>{data.name}</span>
-                </li>
-              );
-            })}
-          </ul>
-          <button onClick={this.addProductDumy}>Tambah Data</button>
-        </div>
-      </div>
-    );
-  }
+function App() {
+  return (
+    <Router>
+      <div>Selamat Datang di HOME</div>
+      <Switch>
+        <Route path="/" exact component={ProductList} />
+        <Route path="/add-product" component={ProductAdd} />
+      </Switch>
+    </Router>
+  );
 }
+
+export default App;
