@@ -63,6 +63,7 @@
     }
   },
   "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
     "@electron-forge/cli": "6.0.0-beta.53",
     "@electron-forge/maker-deb": "6.0.0-beta.53",
     "@electron-forge/maker-rpm": "6.0.0-beta.53",
