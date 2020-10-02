@@ -3,7 +3,7 @@ import { GET_ALL_PRODUCT, GET_ALL_USER } from "../constants/ipc.constant";
 import sendAsync, {
   handleGetAllUser,
   handleGetAllProduct,
-} from "../ipc-electron/ipc-rendere";
+} from "../ipc/rendererIPC";
 
 export default class App extends Component {
   state = {
