@@ -1,5 +1,6 @@
 const { app, BrowserWindow } = require("electron");
 const path = require("path");
+require("regenerator-runtime");
 require("./ipc-electron/ipc-main");
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.

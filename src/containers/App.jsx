@@ -1,25 +1,28 @@
 import React, { Component } from "react";
-import { GET_ALL_PRODUCT } from "../constants/ipc.constant";
-import sendAsync from "../ipc-electron/ipc-rendere";
+import { GET_ALL_PRODUCT, GET_ALL_USER } from "../constants/ipc.constant";
+import sendAsync, {
+  handleGetAllUser,
+  handleGetAllProduct,
+} from "../ipc-electron/ipc-rendere";
 
 export default class App extends Component {
   state = {
+    users: [],
     products: [],
   };
   componentDidMount() {
-    sendAsync({ action: GET_ALL_PRODUCT, payload: null }).then((result) =>
-      this.setState({ products: result })
-    );
+    console.log(handleGetAllUser());
+    console.log(handleGetAllProduct());
   }
 
   render() {
-    const { products } = this.state;
+    const { users } = this.state;
     return (
       <div>
         <span>Selamat Datang Pekok Aku ingi selalu bersama kamu</span>
         <div>
-          {products.map((data, index) => {
-            return <span key={index}>{data.nama}</span>;
+          {users.map((data, index) => {
+            return <span key={index}>{data.username}</span>;
           })}
         </div>
       </div>

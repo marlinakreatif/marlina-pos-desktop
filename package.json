@@ -84,6 +84,7 @@
     "better-sqlite3": "^7.1.1",
     "electron-squirrel-startup": "^1.0.0",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "regenerator-runtime": "^0.13.7"
   }
 }
