@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import invokeHandler from "../../ipc/rendererIPC";
 import * as IPC from "../../constants/ipc.constant";
+import { Container, Row, Col, Table, Button } from "react-bootstrap";
 
 export default class ProductList extends Component {
   state = {
@@ -15,6 +16,7 @@ export default class ProductList extends Component {
 
   renderHelper = () => {
     const { products } = this.state;
+    console.log("PRODUCT", products);
     if (products.length === 0) {
       return (
         <tr>
@@ -28,9 +30,14 @@ export default class ProductList extends Component {
         <tr key={index}>
           <td>{data.barcode}</td>
           <td>{data.name}</td>
-          <td>{data.price}</td>
+          <td>{data.buyingPrice}</td>
+          <td>{data.sellingPrice}</td>
           <td>{data.stock}</td>
           <td>{data.createAt}</td>
+          <td>
+            <Button size="sm">DETAIL</Button>
+            <Button size="sm" className="m-1">HAPUS</Button>
+          </td>
         </tr>
       );
     });
@@ -38,29 +45,34 @@ export default class ProductList extends Component {
 
   render() {
     return (
-      <div>
-        <h3>Tabel Product</h3>
-        <hr />
-        <table>
-          <thead>
-            <tr>
-              <th>Barcode</th>
-              <th>Nama Produk</th>
-              <th>Harga</th>
-              <th>Stok</th>
-              <th>Tgl.Dibuat</th>
-            </tr>
-          </thead>
-          <tbody>{this.renderHelper()}</tbody>
-          <tfoot>
-            <tr>
-              <td colSpan={5}>
-                <Link to="/add-product">Tambah Data</Link>
-              </td>
-            </tr>
-          </tfoot>
-        </table>
-      </div>
+      <Container fluid={true}>
+        <Row>
+          <Col>
+            <h4>Daftar Barang</h4>
+            <Table striped bordered hover size="sm">
+              <thead>
+                <tr>
+                  <th>Barcode</th>
+                  <th>Nama Produk</th>
+                  <th>Harga Beli</th>
+                  <th>Harga Jual</th>
+                  <th>Stok</th>
+                  <th>Tgl.Dibuat</th>
+                  <th>Akasi</th>
+                </tr>
+              </thead>
+              <tbody>{this.renderHelper()}</tbody>
+              <tfoot>
+                <tr>
+                  <td colSpan={6}>
+                    <Link to="/add-product">Tambah Data</Link>
+                  </td>
+                </tr>
+              </tfoot>
+            </Table>
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }

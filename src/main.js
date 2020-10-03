@@ -15,10 +15,13 @@ const createWindow = () => {
   const mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
+    show: false,
     webPreferences: {
       nodeIntegration: true,
     },
   });
+  mainWindow.maximize();
+  mainWindow.show();
 
   // and load the index.html of the app.
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);

@@ -14,7 +14,15 @@ import { async } from "regenerator-runtime";
 const DB = require("better-sqlite3-helper");
 
 export const getAllProduct = async () => {
-  return await DB().query("SELECT * FROM products");
+  return await DB().query(`
+      SELECT 
+          p.barcode, p.name,  p.sellingPrice, 
+          p.buyingPrice, p.stock ,u.symbol as 'unit', 
+          p.createAt
+      FROM products p
+      INNER JOIN  units u 
+      ON p.unitId = u.id
+  `);
 };
 
 export const getProductById = async (productId) => {
