@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 import invokeHandler from "../../ipc/rendererIPC";
 import * as IPC from "../../constants/ipc.constant";
 import { Container, Row, Col, Table, Button } from "react-bootstrap";
-import editIcon from "../../icons/pencil.svg";
-import deleteIcon from "../../icons/trash.svg";
+import Icon from "../../icons";
 
 export default class ProductList extends Component {
   state = {
@@ -36,12 +35,12 @@ export default class ProductList extends Component {
           <td>{data.sellingPrice}</td>
           <td>{data.stock}</td>
           <td>{data.createAt}</td>
-          <td >
+          <td>
             <Link to="edit">
-              <img className="shop-btn-icon" src={editIcon} alt="edit" />
+              <img className="shop-btn-icon" src={Icon.pencilIco} alt="edit" />
             </Link>
             <Link to="edit">
-              <img className="shop-btn-icon" src={deleteIcon} alt="edit" />
+              <img className="shop-btn-icon" src={Icon.trashIco} alt="edit" />
             </Link>
           </td>
         </tr>
