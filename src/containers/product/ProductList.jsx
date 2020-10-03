@@ -53,9 +53,23 @@ export default class ProductList extends Component {
       <Container fluid={true}>
         <Row>
           <Col>
-            <h4>Daftar Barang</h4>
             <Table striped bordered hover size="sm">
               <thead>
+                <tr>
+                  <td colSpan={7}>
+                    <h5>
+                      Daftar Produk
+                      <div className="float-right">
+                        <Link
+                          to="/add-product"
+                          className="btn btn-secondary btn-sm"
+                        >
+                          Tambah Produk
+                        </Link>
+                      </div>
+                    </h5>
+                  </td>
+                </tr>
                 <tr>
                   <th>Barcode</th>
                   <th>Nama Produk</th>
@@ -70,7 +84,7 @@ export default class ProductList extends Component {
               <tfoot>
                 <tr>
                   <td colSpan={7}>
-                    <Link to="/add-product">Tambah Data</Link>
+                    Total Produk
                   </td>
                 </tr>
               </tfoot>

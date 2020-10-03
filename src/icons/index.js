@@ -6,6 +6,7 @@ import shopIco from "./shop.svg";
 import cartInIco from "./shopping-cart-1.svg";
 import cartOutIco from "./shopping-cart-2.svg";
 import trashIco from "./trash.svg";
+import productIco from "./list.svg";
 
 export default {
   currencyIco,
@@ -16,4 +17,5 @@ export default {
   cartInIco,
   cartOutIco,
   trashIco,
+  productIco,
 };
