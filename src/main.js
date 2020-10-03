@@ -21,13 +21,14 @@ const createWindow = () => {
     },
   });
   mainWindow.maximize();
+  // mainWindow.removeMenu(); //uncomment when production build
   mainWindow.show();
 
   // and load the index.html of the app.
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+  mainWindow.webContents.openDevTools(); // comment when production
 };
 
 // This method will be called when Electron has finished
