@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Row, Col, Form } from "react-bootstrap";
+import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import invokeHandler from "../../ipc/rendererIPC";
 import { UNIT, PRODUCT } from "../../constants/ipc.constant";
 
@@ -21,9 +21,20 @@ class ProductAdd extends Component {
       .then((res) => this.setState({ units: res }))
       .catch((err) => console.error("ERROR :", err.message));
   }
+
+  onSubmit = (event) => {
+    event.preventDefault();
+    const { history } = this.props;
+    invokeHandler(PRODUCT.ADD, this.state.product)
+      .then((res) => {
+        alert("Simpan data berhasil");
+        history.push("/");
+      })
+      .catch((err) => console.error("ERROR :", err.message));
+  };
   inputChange = (event) => {
     const { name, value } = event.target;
-    const {product} = this.state;
+    const { product } = this.state;
 
     this.setState({
       product: {
@@ -35,7 +46,6 @@ class ProductAdd extends Component {
 
   render() {
     const { units, product } = this.state;
-    console.log("STATE:", product);
     return (
       <Container>
         <Row>
@@ -44,7 +54,7 @@ class ProductAdd extends Component {
             <hr />
           </Col>
         </Row>
-        <Form>
+        <Form onSubmit={this.onSubmit}>
           <Form.Group as={Row} controlId="group1">
             <Form.Label column sm={{ span: 2, offset: 1 }}>
               Nama Produk
@@ -55,6 +65,7 @@ class ProductAdd extends Component {
                 size="sm"
                 type="text"
                 name="name"
+                required
                 placeholder="masukan nama produk"
               />
             </Col>
@@ -69,6 +80,7 @@ class ProductAdd extends Component {
                 size="sm"
                 type="text"
                 name="barcode"
+                required
                 placeholder="masukan barcode"
               />
             </Col>
@@ -83,6 +95,7 @@ class ProductAdd extends Component {
                 size="sm"
                 name="buyingPrice"
                 type="number"
+                required
                 placeholder="masukan harga pembelian"
               />
             </Col>
@@ -97,6 +110,7 @@ class ProductAdd extends Component {
                 size="sm"
                 type="number"
                 name="sellingPrice"
+                required
                 placeholder="masukan harga penjualan"
               />
             </Col>
@@ -112,6 +126,7 @@ class ProductAdd extends Component {
                 size="sm"
                 as="select"
                 name="unitId"
+                required
                 defaultValue={product.unitId}
               >
                 <option key={"nol"} value={0} disabled>{`Pilih Satuan`}</option>
@@ -126,6 +141,13 @@ class ProductAdd extends Component {
               </Form.Control>
             </Col>
           </Form.Group>
+          <Row>
+            <Col>
+              <Button size="sm" variant="dark" type="submit">
+                SIMPAN
+              </Button>
+            </Col>
+          </Row>
         </Form>
       </Container>
     );

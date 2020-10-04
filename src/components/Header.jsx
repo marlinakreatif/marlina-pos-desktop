@@ -21,13 +21,13 @@ function Header() {
               <div className="menu-caption">DAFTAR PRODUK</div>
             </div>
           </Link>
-          <Link to="/">
+          <Link to="/trx-buy">
             <div className="menu-item">
               <img src={Icons.cartInIco} alt="trx_buy" />
               <div className="menu-caption">RIWAYAT PEMBELIAN</div>
             </div>
           </Link>
-          <Link to="/">
+          <Link to="/trx-sell">
             <div className="menu-item">
               <img src={Icons.cartInIco} alt="trx_sell" />
               <div className="menu-caption">RIWAYAT PENJUALAN</div>
