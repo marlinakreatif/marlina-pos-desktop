@@ -1,5 +1,8 @@
+body {
+  background-color: #1d2124;
+}
 main {
-  padding: 20px;
+  padding: 5px 20px;
 }
 
 .shop-btn-icon {
@@ -16,7 +19,7 @@ main {
   background-color: rgb(241, 237, 237);
   box-shadow: 0px 2px 5px 0px gray;
 }
-.menu-container > .menu-item {
+.menu-item {
   display: inline-block;
   margin: 0 5px;
   height: 50px;
@@ -29,7 +32,7 @@ main {
   box-shadow: 0 1px 1px 0 gray;
   border-radius: 5px;
 }
-.menu-container > .menu-item > .menu-caption {
+ .menu-item > .menu-caption {
   display: inherit;
   width: 100px;
   height: 100%;
@@ -41,7 +44,7 @@ main {
   color: white;
 }
 
-.menu-container > .menu-item > img {
+.menu-item > img {
   width: 30px;
   height: auto;
   display: inherit;
@@ -50,12 +53,12 @@ main {
   filter: invert(1);
 }
 
-.single{
+.single {
   line-height: 40px;
 }
 
-.shop-title{
-  color:white;
+.shop-title {
+  color: white;
   font-size: 20px;
   font-weight: bold;
   padding: 0px 20px;
@@ -63,10 +66,16 @@ main {
   font-family: monospace;
 }
 
-.shop-footer{
+.shop-footer {
   font-size: 12px;
   text-align: right;
   font-family: monospace;
   color: white;
   padding: 5px 20px;
+}
+
+.container {
+  background-color: white;
+  padding: 20px;
+  height: 100%;
 }

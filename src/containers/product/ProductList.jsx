@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import invokeHandler from "../../ipc/rendererIPC";
-import * as IPC from "../../constants/ipc.constant";
+import {PRODUCT}from "../../constants/ipc.constant";
 import { Container, Row, Col, Table, Button } from "react-bootstrap";
 import Icon from "../../icons";
 
@@ -10,14 +10,13 @@ export default class ProductList extends Component {
     products: [],
   };
   componentDidMount() {
-    invokeHandler(IPC.PRODUCT.ALL)
+    invokeHandler(PRODUCT.ALL)
       .then((res) => this.setState({ products: res }))
       .catch((err) => console.error("ERROR :", err.message));
   }
 
   renderHelper = () => {
     const { products } = this.state;
-    console.log("PRODUCT", products);
     if (products.length === 0) {
       return (
         <tr>
@@ -33,7 +32,7 @@ export default class ProductList extends Component {
           <td>{data.name}</td>
           <td>{data.buyingPrice}</td>
           <td>{data.sellingPrice}</td>
-          <td>{data.stock}</td>
+          <td>{`${data.stock} ${data.unit}`}</td>
           <td>{data.createAt}</td>
           <td>
             <Link to="edit">
@@ -50,7 +49,7 @@ export default class ProductList extends Component {
 
   render() {
     return (
-      <Container fluid={true}>
+      <Container >
         <Row>
           <Col>
             <Table striped bordered hover size="sm">
