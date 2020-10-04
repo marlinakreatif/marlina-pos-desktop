@@ -5,7 +5,15 @@ import { UNIT, PRODUCT } from "../../constants/ipc.constant";
 
 class ProductAdd extends Component {
   state = {
-    product: {},
+    product: {
+      barcode: "",
+      name: "",
+      buyingPrice: 0,
+      sellingPrice: 0,
+      unitId: 0,
+      stock: 0,
+      createAt: new Date().getTime(),
+    },
     units: [],
   };
   componentDidMount() {
@@ -13,9 +21,21 @@ class ProductAdd extends Component {
       .then((res) => this.setState({ units: res }))
       .catch((err) => console.error("ERROR :", err.message));
   }
+  inputChange = (event) => {
+    const { name, value } = event.target;
+    const {product} = this.state;
+
+    this.setState({
+      product: {
+        ...product,
+        [name]: value,
+      },
+    });
+  };
 
   render() {
-    const { units } = this.state;
+    const { units, product } = this.state;
+    console.log("STATE:", product);
     return (
       <Container>
         <Row>
@@ -31,8 +51,10 @@ class ProductAdd extends Component {
             </Form.Label>
             <Col sm="4">
               <Form.Control
+                onChange={this.inputChange}
                 size="sm"
                 type="text"
+                name="name"
                 placeholder="masukan nama produk"
               />
             </Col>
@@ -43,8 +65,10 @@ class ProductAdd extends Component {
             </Form.Label>
             <Col sm="4">
               <Form.Control
+                onChange={this.inputChange}
                 size="sm"
                 type="text"
+                name="barcode"
                 placeholder="masukan barcode"
               />
             </Col>
@@ -55,8 +79,10 @@ class ProductAdd extends Component {
             </Form.Label>
             <Col sm="4">
               <Form.Control
+                onChange={this.inputChange}
                 size="sm"
-                type="text"
+                name="buyingPrice"
+                type="number"
                 placeholder="masukan harga pembelian"
               />
             </Col>
@@ -67,8 +93,10 @@ class ProductAdd extends Component {
             </Form.Label>
             <Col sm="4">
               <Form.Control
+                onChange={this.inputChange}
                 size="sm"
-                type="text"
+                type="number"
+                name="sellingPrice"
                 placeholder="masukan harga penjualan"
               />
             </Col>
@@ -79,7 +107,14 @@ class ProductAdd extends Component {
               Satuan
             </Form.Label>
             <Col sm="4">
-              <Form.Control size="sm" as="select">
+              <Form.Control
+                onChange={this.inputChange}
+                size="sm"
+                as="select"
+                name="unitId"
+                defaultValue={product.unitId}
+              >
+                <option key={"nol"} value={0} disabled>{`Pilih Satuan`}</option>
                 {units.map((unit, i) => {
                   return (
                     <option
